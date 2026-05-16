@@ -7,14 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bgPrimary: "#FAF9F6", // Elegant Off-White
-        textPrimary: "#111111", // Deep Charcoal
-        accent: "#D4CBB3", // Warm Beige/Sand
-        accentDark: "#A89F91", // Muted Taupe
+        bgPrimary: "#020617", // Deep Obsidian
+        textPrimary: "#F8FAFC", // Ghost White
+        accent: "#06B6D4", // Electric Cyan
+        accentDark: "#8B5CF6", // Cyber Violet
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
       },
     },
   },
