@@ -3,7 +3,6 @@ import {
   ArrowRight, 
   Menu, 
   X,
-  Mail,
   Layers,
   Zap,
   ShieldCheck,
