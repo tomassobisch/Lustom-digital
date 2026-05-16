@@ -7,13 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#000000",
-        accent: "#FF5722",
-        neutralLight: "#F5F5F5",
-        neutralDark: "#333333",
+        bgPrimary: "#FAF9F6", // Elegant Off-White
+        textPrimary: "#111111", // Deep Charcoal
+        accent: "#D4CBB3", // Warm Beige/Sand
+        accentDark: "#A89F91", // Muted Taupe
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
     },
   },

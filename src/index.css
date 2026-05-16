@@ -1,31 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  background-color: #000000;
-  color: #F5F5F5;
+  background-color: #FAF9F6;
+  color: #111111;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 @theme {
-  --color-primary: #000000;
-  --color-accent: #FF5722;
-  --color-neutral-light: #F5F5F5;
-  --color-neutral-dark: #333333;
+  --color-bg-primary: #FAF9F6;
+  --color-text-primary: #111111;
+  --color-accent: #D4CBB3;
+  --color-accent-dark: #A89F91;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #ffffff, #FF5722);
+  background: linear-gradient(to right, #111111, #A89F91);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.nav-blur {
+  background: rgba(250, 249, 246, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+/* Custom transitions */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-8px);
 }
