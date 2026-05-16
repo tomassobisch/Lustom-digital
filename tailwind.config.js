@@ -14,7 +14,12 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'serif'],
       },
+      letterSpacing: {
+        'super-widest': '0.4em',
+        'mega-widest': '0.6em',
+      }
     },
   },
   plugins: [],
