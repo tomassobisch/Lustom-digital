@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        bgPrimary: "#020617", // Deep Obsidian
-        textPrimary: "#F8FAFC", // Ghost White
-        accent: "#06B6D4", // Electric Cyan
-        accentDark: "#8B5CF6", // Cyber Violet
+        bgPrimary: "#FAF9F6", // Elegant Off-White / Cream
+        textPrimary: "#111111", // Deep Charcoal
+        accent: "#D4CBB3", // Warm Beige
+        accentDark: "#A89F91", // Muted Taupe
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

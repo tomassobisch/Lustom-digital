@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  background-color: #020617;
-  color: #F8FAFC;
+  background-color: #FAF9F6;
+  color: #111111;
 }
 
 body {
@@ -13,36 +13,32 @@ body {
 }
 
 @theme {
-  --color-bg-primary: #020617;
-  --color-text-primary: #F8FAFC;
-  --color-accent: #06B6D4;
-  --color-accent-dark: #8B5CF6;
+  --color-bg-primary: #FAF9F6;
+  --color-text-primary: #111111;
+  --color-accent: #D4CBB3;
+  --color-accent-dark: #A89F91;
 }
 
 .glass-card {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.03);
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #06B6D4, #8B5CF6);
+  background: linear-gradient(to right, #111111, #A89F91);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .nav-blur {
-  background: rgba(2, 6, 23, 0.7);
+  background: rgba(250, 249, 246, 0.8);
   backdrop-filter: blur(15px);
 }
 
-.glow-mesh {
+.soft-glow {
   background-image: 
-    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-}
-
-.border-gradient {
-  border-image: linear-gradient(to right, #06B6D4, #8B5CF6) 1;
+    radial-gradient(at 0% 0%, rgba(212, 203, 179, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(168, 159, 145, 0.1) 0px, transparent 50%);
 }
