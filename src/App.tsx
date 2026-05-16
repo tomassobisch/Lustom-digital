@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Globe, 
   Rocket, 
   Cpu, 
   ArrowRight, 
   Menu, 
-  X, 
-  CheckCircle2, 
-  Instagram, 
-  Linkedin, 
-  Mail 
+  X,
+  Mail
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -179,8 +176,6 @@ const Footer = () => (
         </div>
         
         <div className="flex gap-8">
-          <a href="#" className="text-zinc-500 hover:text-accent transition-colors"><Instagram size={20} /></a>
-          <a href="#" className="text-zinc-500 hover:text-accent transition-colors"><Linkedin size={20} /></a>
           <a href="#" className="text-zinc-500 hover:text-accent transition-colors"><Mail size={20} /></a>
         </div>
       </div>
