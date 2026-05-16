@@ -24,41 +24,41 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-[100] transition-all duration-500 ${scrolled ? 'py-4 bg-black/40 backdrop-blur-2xl border-b border-white/5' : 'py-8 bg-transparent'}`}>
+    <nav className={`fixed w-full z-[100] transition-all duration-500 ${scrolled ? 'py-4 bg-black/60 backdrop-blur-2xl border-b border-accent/20' : 'py-10 bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-4 group cursor-pointer"
+          className="flex items-center gap-6 group cursor-pointer"
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-accent/20 rounded-xl blur-lg group-hover:bg-accent/40 transition-all"></div>
-            <img src={logo} alt="Lustom Digital Logo" className="relative w-12 h-12 object-contain" />
+            <div className="absolute inset-0 bg-accent/30 rounded-full blur-2xl group-hover:bg-accent/60 transition-all duration-700"></div>
+            <img src={logo} alt="Lustom Digital Logo" className="relative w-16 h-16 md:w-20 md:h-20 object-contain transition-transform duration-700 group-hover:scale-110" />
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-black tracking-tighter text-2xl uppercase italic leading-none">Lustom<span className="text-accent">Digital</span></span>
-            <span className="text-[8px] text-zinc-500 font-bold tracking-[0.4em] uppercase">Elite Agency</span>
+            <span className="text-white font-black tracking-tighter text-3xl md:text-4xl uppercase italic leading-none">Lustom<span className="text-accent">Digital</span></span>
+            <span className="text-[10px] text-accent font-black tracking-[0.5em] uppercase mt-1 opacity-80">Premium Tech Agency</span>
           </div>
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-12">
           {['Servicios', 'Estrategia', 'Agencia'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] font-black text-zinc-400 hover:text-accent transition-all uppercase tracking-[0.2em] relative group">
+            <a key={item} href={`#${item.toLowerCase()}`} className="text-[11px] font-black text-zinc-300 hover:text-accent transition-all uppercase tracking-[0.3em] relative group">
               {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-accent transition-all duration-500 group-hover:w-full"></span>
             </a>
           ))}
           <motion.button 
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(255,87,34,0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="bg-accent text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_40px_rgba(255,87,34,0.2)]"
+            className="bg-accent text-black px-10 py-4 rounded-full font-black text-[11px] uppercase tracking-widest hover:bg-white transition-all shadow-2xl shadow-accent/20"
           >
             Agenda una llamada
           </motion.button>
         </div>
 
-        <button className="md:hidden text-white p-2 bg-white/5 rounded-xl" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="lg:hidden text-white p-3 bg-accent/10 rounded-2xl border border-accent/20" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -112,11 +112,20 @@ const Hero = () => {
 
           <motion.h1 
             style={{ y: y1, opacity }}
-            className="text-6xl md:text-[160px] font-black text-white leading-[0.85] uppercase italic tracking-tighter mb-12"
+            className="text-7xl md:text-[200px] font-black text-white leading-[0.8] uppercase italic tracking-tighter mb-12"
           >
             Lustom <br />
             <span className="text-gradient">Digital</span>
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="absolute -top-20 md:-top-40 opacity-10 pointer-events-none"
+          >
+            <img src={logo} alt="Watermark" className="w-[500px] md:w-[800px] grayscale" />
+          </motion.div>
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
