@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+import logo from './assets/logo.png';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +22,7 @@ const Navbar = () => {
     <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center font-black text-black">L</div>
+          <img src={logo} alt="Lustom Digital Logo" className="w-10 h-10 object-contain" />
           <span className="text-white font-black tracking-tighter text-xl uppercase italic">Lustom<span className="text-accent">Digital</span></span>
         </div>
 
