@@ -36,12 +36,12 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col">
             <span className="text-text-primary font-black tracking-tighter text-4xl md:text-5xl uppercase leading-none">Lustom<span className="text-accent-dark italic font-light">Digital</span></span>
-            <span className="text-[11px] text-accent-dark font-black tracking-[0.6em] uppercase mt-2">Boutique Agency</span>
+            <span className="text-[11px] text-accent-dark font-black tracking-[0.6em] uppercase mt-2">Digital Agency</span>
           </div>
         </motion.div>
 
         <div className="hidden lg:flex items-center gap-16">
-          {['Servicios', 'Método', 'Contacto'].map((item) => (
+          {['Servicios', 'Estrategia', 'Contacto'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="text-[11px] font-black text-text-primary/60 hover:text-text-primary transition-all uppercase tracking-[0.4em] relative group">
               {item}
               <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-text-primary transition-all duration-500 group-hover:w-full"></span>
@@ -52,7 +52,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.98 }}
             className="bg-text-primary text-white px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-accent-dark transition-all shadow-xl shadow-black/5"
           >
-            Comenzar proyecto
+            Impulsa tu Marca
           </motion.button>
         </div>
 
@@ -200,20 +200,20 @@ const Services = () => (
         <FeatureCard 
           icon={Layers}
           delay={0.1}
-          title="Funnels de Conversión"
-          desc="Optimizamos el viaje del cliente mediante embudos de venta persuasivos que maximizan el retorno de cada visita."
+          title="Social Media & Content"
+          desc="Gestionamos y potenciamos tu presencia en redes sociales con contenido estratégico diseñado para conectar y fidelizar a tu audiencia."
         />
         <FeatureCard 
           icon={Zap}
           delay={0.2}
-          title="Plataformas High-End"
-          desc="Desarrollamos soluciones web robustas y elegantes, equilibrando rendimiento técnico con diseño minimalista de vanguardia."
+          title="Webs de Alto Rendimiento"
+          desc="Desarrollamos ecosistemas web ultra-rápidos que no solo lucen increíbles, sino que están optimizados para convertir cada visita en negocio."
         />
         <FeatureCard 
           icon={ShieldCheck}
           delay={0.3}
-          title="Automatización Inteligente"
-          desc="Liberamos tu tiempo integrando sistemas autónomos y flujos de trabajo inteligentes que escalan tu negocio sin fricción."
+          title="Ads & Automatización"
+          desc="Maximizamos tu inversión publicitaria y liberamos tu tiempo integrando flujos inteligentes de captación y seguimiento de leads."
         />
       </div>
     </div>
