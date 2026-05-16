@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        bgPrimary: "#FAF9F6", // Elegant Off-White / Cream
+        bgPrimary: "#E7E0D3", // Sophisticated Natural Tan / Light Brown
         textPrimary: "#111111", // Deep Charcoal
         accent: "#D4CBB3", // Warm Beige
         accentDark: "#A89F91", // Muted Taupe
