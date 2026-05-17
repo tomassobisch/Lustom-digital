@@ -7,19 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bgPrimary: "#FAF9F6", // Mandatory Cream
-        textPrimary: "#111111", // Mandatory Charcoal
-        accent: "#D4CBB3", // Mandatory Beige
-        accentDark: "#A89F91", // Mandatory Taupe
+        bgPrimary: "#0D0D0D", // Deep dark background
+        accent: "#D48B58", // Elegant Copper/Orange from image
+        textSecondary: "#8A8A8A", // Muted text
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['"Cormorant Garamond"', 'serif'],
       },
-      letterSpacing: {
-        'tightest': '-0.05em',
-        'mega-widest': '0.8em',
-      }
     },
   },
   plugins: [],

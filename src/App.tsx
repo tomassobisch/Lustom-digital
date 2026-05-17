@@ -1,12 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Menu, 
   X,
   ArrowRight,
-  Plus,
-  Play
+  PenTool,
+  Monitor,
+  Settings,
+  BarChart3,
+  Mail
 } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import logo from './assets/logo.png';
 
@@ -20,53 +23,52 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <nav className={`fixed w-full z-[100] transition-all duration-1000 ${scrolled ? 'py-4 glass-nav' : 'py-12 bg-transparent'}`}>
-      <div className="max-w-[1800px] mx-auto px-12 flex items-center justify-between">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-12 group cursor-pointer"
-        >
-          <img src={logo} alt="Lustom" className="w-16 h-16 md:w-20 md:h-20 object-contain transition-transform duration-1000 group-hover:scale-110" />
-          <div className="hidden sm:flex flex-col border-l border-black/5 pl-12">
-            <span className="text-text-primary font-black serif-title text-4xl leading-none tracking-tightest">Lustom</span>
-            <span className="text-accent-dark font-black tracking-[0.6em] text-[8px] uppercase mt-2">Digital Agency</span>
-          </div>
-        </motion.div>
+  const navLinks = [
+    { name: 'INICIO', href: '#' },
+    { name: 'SERVICIOS', href: '#servicios' },
+    { name: 'PROYECTOS', href: '#proyectos' },
+    { name: 'SOBRE NOSOTROS', href: '#' },
+    { name: 'CONTACTO', href: '#contacto' },
+  ];
 
-        <div className="hidden lg:flex items-center gap-20">
-          {['Expertise', 'The Method', 'Inquiry'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase().replace(' ', '')}`} className="text-[9px] font-black text-text-primary/40 hover:text-text-primary transition-all uppercase tracking-[0.4em] relative group">
-              {item}
-              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-text-primary transition-all duration-700 group-hover:w-full"></span>
-            </a>
-          ))}
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-text-primary text-white px-12 py-5 rounded-full font-black text-[9px] uppercase tracking-mega-widest shadow-2xl transition-all"
-          >
-            Start a Project
-          </motion.button>
+  return (
+    <nav className={`fixed w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-bgPrimary/95 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
+      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <img src={logo} alt="Lustom Digital" className="w-10 h-10 object-contain" />
+          <span className="text-white font-black text-xl tracking-tighter uppercase">Lustom<span className="font-light text-textSecondary ml-1">Digital</span></span>
         </div>
 
-        <button className="lg:hidden text-text-primary" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={32} strokeWidth={1} /> : <Menu size={32} strokeWidth={1} />}
+        <div className="hidden lg:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <a key={link.name} href={link.href} className="text-[11px] font-bold text-textSecondary hover:text-white transition-colors tracking-widest">
+              {link.name}
+            </a>
+          ))}
+          <button className="bg-white/5 border border-white/10 text-white px-8 py-3 rounded-sm font-bold text-[11px] uppercase tracking-widest hover:bg-accent hover:border-accent transition-all">
+            HABLEMOS
+          </button>
+        </div>
+
+        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full h-screen bg-bg-primary p-24 flex flex-col gap-16 lg:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full left-0 w-full bg-bgPrimary border-b border-white/5 p-8 flex flex-col gap-6 lg:hidden"
           >
-            {['Expertise', 'The Method', 'Inquiry'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="serif-title text-8xl font-light text-text-primary uppercase tracking-tighter hover:italic transition-all" onClick={() => setIsOpen(false)}>{item}</a>
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} className="text-sm font-bold text-white uppercase tracking-widest" onClick={() => setIsOpen(false)}>{link.name}</a>
             ))}
+            <button className="bg-accent text-white py-4 rounded-sm font-bold text-xs uppercase tracking-widest">
+              HABLEMOS
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -74,283 +76,260 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
-  const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 800], [0, 250]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center pt-40 pb-20 overflow-hidden bg-bg-primary">
-      {/* Parallax Background Elements */}
-      <motion.div 
-        style={{ y: yText }}
-        className="absolute top-1/4 left-10 opacity-5 pointer-events-none"
+const Hero = () => (
+  <section className="relative min-h-screen flex items-center bg-bgPrimary pt-20 overflow-hidden">
+    <div className="max-w-[1400px] mx-auto px-6 w-full grid lg:grid-cols-2 gap-20 items-center">
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        <span className="serif-title text-[400px] font-black leading-none uppercase select-none">Lustom</span>
+        <span className="section-label">LUSTOM DIGITAL</span>
+        <h1 className="text-6xl md:text-[84px] font-bold text-white mb-8 leading-[1.1] tracking-tight">
+          Digitalizamos <br /> negocios.
+        </h1>
+        <p className="max-w-md text-textSecondary text-lg md:text-xl font-medium mb-12 leading-relaxed">
+          Ayudamos a marcas a construir una presencia digital sólida, atractiva y rentable.
+        </p>
+        <button className="btn-accent flex items-center gap-3">
+          HABLEMOS DE TU PROYECTO <ArrowRight size={18} />
+        </button>
       </motion.div>
-
-      <div className="max-w-[1600px] mx-auto px-12 relative z-10 w-full">
-        <div className="grid lg:grid-cols-12 gap-20 items-center">
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h1 className="serif-title text-8xl md:text-[180px] font-light text-text-primary leading-[0.85] uppercase tracking-tightest mb-16">
-                Redefining <br />
-                <span className="italic font-normal lowercase ml-[-0.05em] text-gradient-earth">Digital Architecture</span>
-              </h1>
-              <div className="flex flex-col md:flex-row items-start gap-12">
-                 <p className="max-w-md text-text-primary/50 text-xl font-light leading-relaxed tracking-tight">
-                    We transform traditional value into scalable digital assets. High-end engineering meets elite aesthetic.
-                 </p>
-                 <motion.button 
-                   whileHover={{ scale: 1.1, rotate: -2 }}
-                   className="w-24 h-24 rounded-full border border-black/10 flex items-center justify-center group"
-                 >
-                   <Play size={24} className="group-hover:fill-black transition-all" />
-                 </motion.button>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="lg:col-span-4 relative">
-             <motion.div 
-               style={{ opacity }}
-               className="vertical-text absolute -left-20 top-0 text-[10px] font-black uppercase tracking-[0.8em] text-accent-dark"
-             >
-                Established 2026 — Lustom Digital
-             </motion.div>
-             <div className="relative aspect-[3/4] overflow-hidden rounded-[60px] group">
-                <img src={logo} alt="Lustom Agency" className="w-full h-full object-contain bg-white/50 scale-75 group-hover:scale-100 transition-all duration-1000" />
-                <div className="absolute inset-0 bg-accent/10 mix-blend-overlay"></div>
+      
+      <div className="relative">
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2 }}
+          className="rounded-[20px] overflow-hidden shadow-2xl"
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+            alt="Modern Architecture" 
+            className="w-full h-full object-cover min-h-[500px]"
+          />
+          <div className="absolute inset-0 bg-black/20"></div>
+          
+          <div className="absolute top-10 right-10 flex items-center gap-3 bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/10">
+             <img src={logo} alt="Overlay" className="w-10 h-10 object-contain grayscale brightness-200" />
+             <div className="flex flex-col">
+                <span className="text-white font-bold text-sm tracking-tighter uppercase">LUSTOM</span>
+                <span className="text-[8px] text-white/60 font-bold tracking-[0.4em] uppercase">DIGITAL</span>
              </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-
-      <div className="absolute bottom-20 left-12 flex items-center gap-12">
-         <div className="flex gap-4">
-            <div className="w-2 h-2 bg-text-primary rounded-full animate-ping"></div>
-            <span className="text-[10px] font-black uppercase tracking-mega-widest">Now Scaling Brands Globally</span>
-         </div>
-      </div>
-    </section>
-  );
-};
-
-const SectionTitle = ({ title, subtitle, align = 'left' }: any) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <div ref={ref} className={`mb-32 ${align === 'center' ? 'text-center' : 'text-left'}`}>
-      <motion.span 
-        initial={{ opacity: 0, x: -20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1 }}
-        className="text-accent-dark font-black uppercase tracking-[1em] text-[9px] mb-8 block"
-      >
-        {subtitle}
-      </motion.span>
-      <motion.h2 
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.2, delay: 0.2 }}
-        className="serif-title text-7xl md:text-[120px] font-light text-text-primary uppercase tracking-tighter leading-none"
-      >
-        {title}
-      </motion.h2>
     </div>
-  );
-};
+  </section>
+);
 
-const ExpertiseCard = ({ title, desc, index, delay }: any) => (
+const ServiceCard = ({ icon: Icon, title, desc }: any) => (
   <motion.div 
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-    viewport={{ once: true }}
-    className="organic-card p-16 h-full flex flex-col justify-between"
+    whileHover={{ y: -10 }}
+    className="bg-[#151515] p-12 rounded-2xl border border-white/5 group hover:border-accent/30 transition-all duration-500"
   >
-    <div>
-      <span className="serif-title text-8xl font-extralight text-black/5 leading-none mb-12 block">{index}</span>
-      <h3 className="serif-title text-4xl font-normal text-text-primary uppercase tracking-tight mb-8 italic">{title}</h3>
-      <p className="text-text-primary/50 text-lg font-medium leading-relaxed">{desc}</p>
+    <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-10 group-hover:bg-accent transition-all">
+      <Icon className="text-accent group-hover:text-white transition-all" size={28} strokeWidth={1.5} />
     </div>
-    <div className="mt-20 flex items-center justify-between border-t border-black/5 pt-10">
-      <span className="text-[9px] font-black uppercase tracking-widest text-accent-dark">Inquiry</span>
-      <Plus size={20} strokeWidth={1} />
-    </div>
+    <h3 className="text-sm font-black text-white mb-6 uppercase tracking-[0.2em]">{title}</h3>
+    <p className="text-textSecondary text-sm leading-relaxed mb-10">
+      {desc}
+    </p>
+    <a href="#" className="flex items-center gap-2 text-[11px] font-bold text-white uppercase tracking-widest group-hover:text-accent transition-colors">
+      VER MÁS <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+    </a>
   </motion.div>
 );
 
 const Services = () => (
-  <section id="expertise" className="py-60 bg-white">
-    <div className="max-w-[1600px] mx-auto px-12">
-      <SectionTitle title="The Expertise" subtitle="Our Domain" />
-      <div className="grid md:grid-cols-3 gap-12">
-        <ExpertiseCard 
-          index="01"
-          title="Presence"
-          desc="Social & Content Strategy that captures attention and converts it into brand authority."
-          delay={0.1}
-        />
-        <ExpertiseCard 
-          index="02"
-          title="Engineering"
-          desc="Robust Web Infrastructure and Custom Software designed for high-load performance."
-          delay={0.2}
-        />
-        <ExpertiseCard 
-          index="03"
-          title="Performance"
-          desc="Data-driven Advertising and intelligent Automation that guarantees scalable ROI."
-          delay={0.3}
-        />
-      </div>
-    </div>
-  </section>
-);
-
-const TheMethod = () => (
-  <section id="themethod" className="py-60 bg-bg-primary overflow-hidden">
-    <div className="max-w-[1600px] mx-auto px-12 relative">
-      <div className="grid lg:grid-cols-2 gap-40 items-center">
-         <div className="relative">
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5 }}
-              className="aspect-square bg-white rounded-[100px] shadow-2xl flex items-center justify-center p-20 overflow-hidden"
-            >
-               <motion.img 
-                 animate={{ rotate: 360 }}
-                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                 src={logo} 
-                 alt="Concept" 
-                 className="w-full h-full object-contain opacity-5 grayscale" 
-               />
-               <div className="absolute flex flex-col items-center">
-                  <span className="serif-title text-[200px] font-extralight text-text-primary italic leading-none">LU</span>
-                  <span className="text-[10px] font-black uppercase tracking-[1em] text-accent-dark">Process</span>
-               </div>
-            </motion.div>
-         </div>
-
-         <div className="space-y-32">
-            <SectionTitle title="Strategic <br/> Blueprint" subtitle="The Method" />
-            <div className="space-y-20">
-               {[
-                 { t: "Friction Analysis", d: "We dissect your business architecture to find technical and strategic bottlenecks." },
-                 { t: "Stack Injection", d: "We deploy the world's most powerful digital tools tailored to your brand identity." },
-                 { t: "Channel Mastery", d: "We dominate the channels where your high-value clients are already spending their time." }
-               ].map((item, i) => (
-                 <motion.div 
-                   key={i}
-                   initial={{ opacity: 0, x: 50 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1 }}
-                   className="group border-b border-black/5 pb-12 cursor-pointer"
-                 >
-                    <h4 className="serif-title text-4xl font-normal text-text-primary uppercase tracking-tight group-hover:italic transition-all">{item.t}</h4>
-                    <p className="mt-6 text-text-primary/40 font-medium text-xl max-w-md leading-relaxed">{item.d}</p>
-                 </motion.div>
-               ))}
-            </div>
-         </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Inquiry = () => (
-  <section id="inquiry" className="py-60 bg-white">
-    <div className="max-w-[1200px] mx-auto px-12">
-      <div className="text-center mb-40">
-        <SectionTitle title="Open Inquiry" subtitle="New Chapters" align="center" />
-        <p className="max-w-2xl mx-auto text-text-primary/50 text-2xl font-light mt-12 leading-relaxed">
-          We only take a limited number of high-stakes projects per year. <br />
-          Start the conversation below.
+  <section id="servicios" className="py-32 bg-[#0D0D0D]">
+    <div className="max-w-[1400px] mx-auto px-6">
+      <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
+        <div className="max-w-2xl">
+          <span className="section-label">SERVICIOS</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
+            Soluciones digitales <br /> que impulsan tu marca.
+          </h2>
+        </div>
+        <p className="max-w-xs text-textSecondary font-medium leading-relaxed">
+          Ofrecemos soluciones estratégicas y creativas para llevar tu negocio al siguiente nivel.
         </p>
       </div>
 
-      <form className="space-y-24">
-        <div className="grid md:grid-cols-2 gap-24">
-          <div className="space-y-4">
-             <span className="text-[9px] font-black uppercase tracking-mega-widest text-black/20">Full Name</span>
-             <input type="text" className="w-full bg-transparent border-b border-black/10 py-6 text-text-primary outline-none focus:border-text-primary transition-all font-light text-3xl placeholder:text-black/5 uppercase tracking-tighter" placeholder="Lustom Client" />
-          </div>
-          <div className="space-y-4">
-             <span className="text-[9px] font-black uppercase tracking-mega-widest text-black/20">Email Address</span>
-             <input type="email" className="w-full bg-transparent border-b border-black/10 py-6 text-text-primary outline-none focus:border-text-primary transition-all font-light text-3xl placeholder:text-black/5 uppercase tracking-tighter" placeholder="HELLO@MARK.COM" />
-          </div>
-        </div>
-        
-        <div className="space-y-4">
-           <span className="text-[9px] font-black uppercase tracking-mega-widest text-black/20">Vision</span>
-           <textarea className="w-full bg-transparent border-b border-black/10 py-6 text-text-primary outline-none focus:border-text-primary transition-all font-light text-3xl h-40 resize-none placeholder:text-black/5 uppercase tracking-tighter" placeholder="DESCRIBE YOUR GOALS"></textarea>
-        </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ServiceCard 
+          icon={PenTool}
+          title="BRANDING"
+          desc="Creamos marcas memorables que conectan con tu audiencia y destacan en el mercado."
+        />
+        <ServiceCard 
+          icon={Monitor}
+          title="PÁGINAS WEB"
+          desc="Diseñamos sitios web modernos, rápidos y optimizados para convertir visitantes en clientes."
+        />
+        <ServiceCard 
+          icon={Settings}
+          title="SISTEMAS & AUTOMATIZACIÓN"
+          desc="Automatizamos procesos para que tu negocio sea más eficiente y escalable."
+        />
+        <ServiceCard 
+          icon={BarChart3}
+          title="PRESENCIA DIGITAL"
+          desc="Estrategias digitales que aumentan tu visibilidad y posicionan tu marca online."
+        />
+      </div>
+    </div>
+  </section>
+);
 
-        <div className="flex justify-center pt-20">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative flex items-center gap-12 bg-text-primary text-white px-20 py-10 rounded-full font-black text-xs uppercase tracking-[0.6em] transition-all"
-          >
-            Submit Proposal
-            <ArrowRight size={20} className="group-hover:translate-x-4 transition-transform" />
-          </motion.button>
+const Projects = () => (
+  <section id="proyectos" className="py-32 bg-[#0A0A0A]">
+    <div className="max-w-[1400px] mx-auto px-6">
+      <div className="flex justify-between items-end mb-20 gap-8">
+        <div>
+          <span className="section-label">PROYECTOS</span>
+          <h2 className="text-5xl font-bold text-white tracking-tight">
+            Resultados que <br /> hablan por sí solos.
+          </h2>
         </div>
-      </form>
+        <a href="#" className="hidden sm:flex items-center gap-2 text-[11px] font-black text-textSecondary hover:text-white uppercase tracking-[0.2em] pb-2 border-b border-textSecondary/20 transition-all">
+          VER TODOS LOS PROYECTOS <ArrowRight size={14} />
+        </a>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { name: 'NOIR LUXURY', cat: 'Branding & Web Design', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop' },
+          { name: 'ALMA ESTUDIO', cat: 'Web Design', img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop' },
+          { name: 'VERTICE CAPITAL', cat: 'Branding & Estrategia', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop' },
+          { name: 'BOSQUE INTERIOR', cat: 'Web Design & Desarrollo', img: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop' }
+        ].map((proj, i) => (
+          <motion.div key={i} whileHover={{ y: -10 }} className="group">
+            <div className="aspect-[4/5] rounded-[20px] overflow-hidden mb-6">
+              <img src={proj.img} alt={proj.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+            </div>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-2">{proj.name}</h4>
+            <p className="text-textSecondary text-[10px] font-bold uppercase tracking-widest">{proj.cat}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const ProcessStep = ({ num, title, desc, icon: Icon }: any) => (
+  <div className="flex flex-col items-center text-center px-4 relative z-10">
+    <div className="w-16 h-16 bg-[#1A1A1B] rounded-full border border-white/5 flex items-center justify-center mb-8 group transition-all hover:border-accent">
+      <Icon className="text-textSecondary group-hover:text-accent transition-colors" size={24} strokeWidth={1.5} />
+    </div>
+    <span className="text-[10px] font-black text-accent mb-4 uppercase tracking-[0.2em]">{num}. {title}</span>
+    <p className="text-textSecondary text-xs leading-relaxed max-w-[200px]">
+      {desc}
+    </p>
+  </div>
+);
+
+const Process = () => (
+  <section className="py-32 bg-[#0D0D0D] border-y border-white/5 relative overflow-hidden">
+    <div className="max-w-[1400px] mx-auto px-6">
+      <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
+        <div className="max-w-2xl">
+          <span className="section-label">NUESTRO PROCESO</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
+            Estrategia. Diseño. <br /> Ejecución. Crecimiento.
+          </h2>
+        </div>
+        <p className="max-w-xs text-textSecondary font-medium leading-relaxed">
+          Un proceso claro y probado para transformar tu negocio en una marca digital sólida.
+        </p>
+      </div>
+
+      <div className="relative pt-10">
+        <div className="absolute top-[42px] left-0 w-full h-px bg-white/5 hidden lg:block"></div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+          <ProcessStep 
+            num="01" 
+            title="DESCUBRIMIENTO" 
+            desc="Analizamos tu negocio, tu mercado y tus objetivos."
+            icon={BarChart3}
+          />
+          <ProcessStep 
+            num="02" 
+            title="ESTRATEGIA" 
+            desc="Diseñamos una estrategia digital personalizada para ti."
+            icon={PenTool}
+          />
+          <ProcessStep 
+            num="03" 
+            title="DISEÑO & DESARROLLO" 
+            desc="Creamos soluciones atractivas, funcionales y orientadas a resultados."
+            icon={Monitor}
+          />
+          <ProcessStep 
+            num="04" 
+            title="CRECIMIENTO" 
+            desc="Optimizamos y escalamos tu presencia digital para generar más resultados."
+            icon={Settings}
+          />
+        </div>
+      </div>
     </div>
   </section>
 );
 
 const Footer = () => (
-  <footer className="py-40 bg-bg-primary border-t border-black/5">
-    <div className="max-w-[1800px] mx-auto px-12">
-      <div className="grid lg:grid-cols-12 gap-24 items-start mb-40">
-        <div className="lg:col-span-6 space-y-12">
-           <div className="flex items-center gap-12">
-              <img src={logo} alt="Lustom" className="w-24 h-24" />
-              <div className="flex flex-col">
-                 <span className="serif-title text-5xl font-black tracking-tightest uppercase italic">Lustom</span>
-                 <span className="text-accent-dark font-black tracking-mega-widest text-[10px] uppercase mt-2">Digital Agency</span>
-              </div>
-           </div>
-           <p className="max-w-sm text-text-primary/40 font-bold uppercase tracking-[0.4em] text-[11px] leading-loose">
-              Technical Excellence. <br />
-              Elite Design Standards. <br />
-              Exponential Returns.
-           </p>
+  <footer className="pt-32 pb-12 bg-[#0A0A0B]">
+    <div className="max-w-[1400px] mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 mb-32">
+        <div className="lg:col-span-4 space-y-10">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Lustom" className="w-12 h-12 object-contain" />
+            <span className="text-white font-black text-2xl tracking-tighter uppercase italic">Lustom<span className="text-textSecondary ml-1">Digital</span></span>
+          </div>
+          <p className="text-textSecondary text-sm leading-relaxed max-w-sm">
+            En Lustom Digital transformamos ideas en experiencias digitales que impulsan marcas y generan resultados.
+          </p>
+          <div className="flex gap-6">
+            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-textSecondary hover:bg-accent hover:text-white transition-all"><Mail size={18} /></a>
+          </div>
         </div>
 
-        <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-24">
-          <div className="space-y-8 flex flex-col">
-            <span className="text-[10px] font-black uppercase tracking-mega-widest opacity-20">Studio</span>
-            <a href="#expertise" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">Expertise</a>
-            <a href="#themethod" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">Method</a>
+        <div className="lg:col-span-2 space-y-8">
+          <h5 className="text-white font-bold text-xs uppercase tracking-widest">NAVEGACIÓN</h5>
+          <div className="flex flex-col gap-4">
+            {['Inicio', 'Servicios', 'Proyectos', 'Sobre nosotros', 'Contacto'].map(item => (
+              <a key={item} href="#" className="text-textSecondary hover:text-white text-sm transition-colors">{item}</a>
+            ))}
           </div>
-          <div className="space-y-8 flex flex-col">
-            <span className="text-[10px] font-black uppercase tracking-mega-widest opacity-20">Connect</span>
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">LinkedIn</a>
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">Instagram</a>
+        </div>
+
+        <div className="lg:col-span-2 space-y-8">
+          <h5 className="text-white font-bold text-xs uppercase tracking-widest">SERVICIOS</h5>
+          <div className="flex flex-col gap-4">
+            {['Branding', 'Páginas Web', 'Sistemas & Automatización', 'Presencia Digital'].map(item => (
+              <a key={item} href="#" className="text-textSecondary hover:text-white text-sm transition-colors">{item}</a>
+            ))}
           </div>
-          <div className="space-y-8 flex flex-col">
-            <span className="text-[10px] font-black uppercase tracking-mega-widest opacity-20">Legal</span>
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">Privacy</a>
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.4em] hover:text-accent-dark transition-colors">Terms</a>
-          </div>
+        </div>
+
+        <div className="lg:col-span-4 bg-[#151516] p-10 rounded-3xl border border-white/5 relative overflow-hidden group">
+           <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl"></div>
+           <h5 className="text-white font-bold text-xs uppercase tracking-widest mb-6">HABLEMOS</h5>
+           <p className="text-textSecondary text-sm mb-10 leading-relaxed">
+             Cuéntanos tu proyecto y te ayudaremos a hacerlo realidad.
+           </p>
+           <button className="w-full bg-accent text-white py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-4">
+             ESCRÍBENOS <ArrowRight size={18} />
+           </button>
         </div>
       </div>
 
-      <div className="pt-20 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-12">
-        <p className="text-text-primary/20 text-[10px] font-black uppercase tracking-[0.6em]">© 2026 Lustom Digital Agency — Engineered for results.</p>
-        <div className="flex gap-4 items-center opacity-20">
-           <span className="w-12 h-[1px] bg-black"></span>
-           <span className="text-[10px] font-black uppercase tracking-widest italic">Built for the future</span>
+      <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-bold text-textSecondary uppercase tracking-widest">
+        <p>© 2026 LUSTOM DIGITAL. Todos los derechos reservados.</p>
+        <div className="flex gap-12">
+          <a href="#" className="hover:text-white transition-colors">Política de privacidad</a>
+          <a href="#" className="hover:text-white transition-colors">Términos y condiciones</a>
         </div>
       </div>
     </div>
@@ -359,13 +338,13 @@ const Footer = () => (
 
 function App() {
   return (
-    <div className="bg-bg-primary min-h-screen font-sans selection:bg-text-primary selection:text-white">
+    <div className="bg-bgPrimary min-h-screen font-sans selection:bg-accent selection:text-white scroll-smooth">
       <Navbar />
       <main>
         <Hero />
         <Services />
-        <TheMethod />
-        <Inquiry />
+        <Projects />
+        <Process />
       </main>
       <Footer />
     </div>

@@ -1,9 +1,9 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  background-color: #FAF9F6;
-  color: #111111;
+  background-color: #0D0D0D;
+  color: #FFFFFF;
 }
 
 body {
@@ -15,60 +15,39 @@ body {
 }
 
 @theme {
-  --color-bg-primary: #FAF9F6;
-  --color-text-primary: #111111;
-  --color-accent: #D4CBB3;
-  --color-accent-dark: #A89F91;
-  --font-serif: "Cormorant Garamond", serif;
-  --font-sans: "Inter", sans-serif;
+  --color-bg-primary: #0D0D0D;
+  --color-accent: #D48B58;
+  --color-text-secondary: #8A8A8A;
 }
 
-.serif-title {
-  font-family: "Cormorant Garamond", serif;
+/* Matching the image's buttons */
+.btn-accent {
+  background-color: #D48B58;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
 }
 
-.glass-nav {
-  background: rgba(250, 249, 246, 0.6);
-  backdrop-filter: blur(25px);
-  border-bottom: 0.5px solid rgba(17, 17, 17, 0.05);
+.btn-accent:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-.organic-card {
-  background: #FFFFFF;
-  border-radius: 40px;
-  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.04);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.organic-card:hover {
-  transform: scale(1.02) translateY(-10px);
-}
-
-.text-gradient-earth {
-  background: linear-gradient(to bottom right, #111111, #A89F91);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-/* Custom Cursor Placeholder style */
-.cursor-blob {
-  width: 20px;
-  height: 20px;
-  background: #D4CBB3;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: multiply;
-  transition: transform 0.1s ease-out;
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8A8A8A;
+  margin-bottom: 20px;
+  display: block;
 }
 
 ::selection {
-  background-color: #111111;
-  color: #FAF9F6;
+  background-color: #D48B58;
+  color: #FFFFFF;
 }
