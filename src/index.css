@@ -1,9 +1,9 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  background-color: #FFFFFF;
-  color: #000000;
+  background-color: #FAF9F6;
+  color: #111111;
 }
 
 body {
@@ -15,69 +15,60 @@ body {
 }
 
 @theme {
-  --color-bg-primary: #FFFFFF;
-  --color-text-primary: #000000;
-  --color-accent: #000000;
-  --color-muted: #666666;
-  --color-border-light: #EEEEEE;
+  --color-bg-primary: #FAF9F6;
+  --color-text-primary: #111111;
+  --color-accent: #D4CBB3;
+  --color-accent-dark: #A89F91;
+  --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Inter", sans-serif;
 }
 
-.optimo-title {
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+.serif-title {
+  font-family: "Cormorant Garamond", serif;
 }
 
-.optimo-card {
+.glass-nav {
+  background: rgba(250, 249, 246, 0.6);
+  backdrop-filter: blur(25px);
+  border-bottom: 0.5px solid rgba(17, 17, 17, 0.05);
+}
+
+.organic-card {
   background: #FFFFFF;
-  border: 1px solid #EEEEEE;
-  transition: all 0.3s ease;
+  border-radius: 40px;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.04);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.optimo-card:hover {
-  border-color: #000000;
+.organic-card:hover {
+  transform: scale(1.02) translateY(-10px);
 }
 
-.optimo-button {
-  background: #000000;
-  color: #FFFFFF;
-  padding: 12px 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 13px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+.text-gradient-earth {
+  background: linear-gradient(to bottom right, #111111, #A89F91);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.optimo-button:hover {
-  background: #333333;
-  transform: translateY(-2px);
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
-.section-padding {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-/* Subtle reveal animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  animation: fadeInUp 0.8s ease-out forwards;
+/* Custom Cursor Placeholder style */
+.cursor-blob {
+  width: 20px;
+  height: 20px;
+  background: #D4CBB3;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  transition: transform 0.1s ease-out;
 }
 
 ::selection {
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: #111111;
+  color: #FAF9F6;
 }
