@@ -12,7 +12,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 import logo from './assets/logo.png';
-import heroNew from './assets/hero_new.png';
+import corpImage from './assets/corp_image.jpeg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,9 +104,10 @@ const Hero = () => (
           transition={{ duration: 1.2 }}
           className="rounded-[20px] overflow-hidden shadow-2xl"
         >
+          {/* Official Corporate Image */}
           <img 
-            src={heroNew} 
-            alt="Lustom Digital Vision" 
+            src={corpImage} 
+            alt="Lustom Digital Corporate" 
             className="w-full h-full object-cover min-h-[600px]"
           />
           <div className="absolute inset-0 bg-black/10"></div>
