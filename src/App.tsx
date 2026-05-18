@@ -79,7 +79,7 @@ const Navbar = () => {
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center bg-bgPrimary pt-20 overflow-hidden">
-    <div className="max-w-[1400px] mx-auto px-6 w-full grid lg:grid-cols-2 gap-20 items-center">
+    <div className="max-w-[1600px] mx-auto px-6 w-full grid lg:grid-cols-[2fr_3fr] gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
@@ -97,18 +97,18 @@ const Hero = () => (
         </button>
       </motion.div>
       
-      <div className="relative">
+      <div className="relative h-full">
         <motion.div 
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
-          className="rounded-[20px] overflow-hidden shadow-2xl"
+          className="rounded-[20px] overflow-hidden shadow-2xl h-full"
         >
-          {/* Official Corporate Image */}
+          {/* Official Corporate Image - ENLARGED */}
           <img 
             src={corpImage} 
             alt="Lustom Digital Corporate" 
-            className="w-full h-full object-cover min-h-[600px]"
+            className="w-full h-full object-cover min-h-[800px]"
           />
           <div className="absolute inset-0 bg-black/10"></div>
         </motion.div>
@@ -330,6 +330,55 @@ const Footer = () => (
   </footer>
 );
 
+const CookieBanner = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem('lustom_cookies_accepted');
+    if (!consent) {
+      const timer = setTimeout(() => setShow(true), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const acceptCookies = () => {
+    localStorage.setItem('lustom_cookies_accepted', 'true');
+    setShow(false);
+  };
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div 
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] w-[90%] max-w-2xl"
+        >
+          <div className="bg-[#1A1A1B] border border-white/10 p-8 rounded-3xl shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="space-y-2 text-left">
+              <h6 className="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+                POLÍTICA DE COOKIES <span className="text-lg">🍪</span>
+              </h6>
+              <p className="text-textSecondary text-[11px] leading-relaxed max-w-md">
+                Utilizamos cookies propias y de terceros para optimizar tu experiencia y medir el rendimiento de nuestra arquitectura digital.
+              </p>
+            </div>
+            <div className="flex gap-4 shrink-0">
+              <button onClick={acceptCookies} className="btn-accent whitespace-nowrap text-[11px] px-8 py-3 rounded-sm">
+                ACEPTAR
+              </button>
+              <button onClick={() => setShow(false)} className="text-textSecondary text-[10px] font-bold uppercase tracking-widest hover:text-white transition-colors">
+                GESTIONAR
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 function App() {
   return (
     <div className="bg-bgPrimary min-h-screen font-sans selection:bg-accent selection:text-white scroll-smooth">
@@ -341,6 +390,7 @@ function App() {
         <Process />
       </main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 }
