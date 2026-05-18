@@ -12,6 +12,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 import logo from './assets/logo.png';
+import heroNew from './assets/hero_new.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,11 +105,11 @@ const Hero = () => (
           className="rounded-[20px] overflow-hidden shadow-2xl"
         >
           <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-            alt="Modern Architecture" 
-            className="w-full h-full object-cover min-h-[500px]"
+            src={heroNew} 
+            alt="Lustom Digital Vision" 
+            className="w-full h-full object-cover min-h-[600px]"
           />
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-black/10"></div>
           
           <div className="absolute top-10 right-10 flex items-center gap-3 bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/10">
              <img src={logo} alt="Overlay" className="w-10 h-10 object-contain grayscale brightness-200" />
