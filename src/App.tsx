@@ -112,7 +112,7 @@ const Hero = () => (
           />
           <div className="absolute inset-0 bg-black/10"></div>
           
-          <div className="absolute top-10 right-10 flex items-center gap-3 bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/10">
+          <div className="absolute bottom-10 left-10 flex items-center gap-3 bg-black/40 backdrop-blur-md p-6 rounded-xl border border-white/10">
              <img src={logo} alt="Overlay" className="w-10 h-10 object-contain grayscale brightness-200" />
              <div className="flex flex-col">
                 <span className="text-white font-bold text-sm tracking-tighter uppercase">LUSTOM</span>
