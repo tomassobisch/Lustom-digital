@@ -78,15 +78,16 @@ const Navbar = () => {
 };
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center bg-bgPrimary pt-20 overflow-hidden">
-    <div className="max-w-[1600px] mx-auto px-6 w-full grid lg:grid-cols-[2fr_3fr] gap-20 items-center">
+  <section className="relative min-h-screen flex items-center bg-bgPrimary pt-32 pb-20 overflow-hidden">
+    <div className="max-w-[1600px] mx-auto px-6 w-full grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
+        className="order-2 lg:order-1"
       >
         <span className="section-label">LUSTOM DIGITAL</span>
-        <h1 className="text-6xl md:text-[84px] font-bold text-white mb-8 leading-[1.1] tracking-tight">
+        <h1 className="text-5xl md:text-[84px] font-bold text-white mb-8 leading-[1.1] tracking-tight">
           Digitalizamos <br /> negocios.
         </h1>
         <p className="max-w-md text-textSecondary text-lg md:text-xl font-medium mb-12 leading-relaxed">
@@ -97,18 +98,18 @@ const Hero = () => (
         </button>
       </motion.div>
       
-      <div className="relative h-full">
+      <div className="relative h-full order-1 lg:order-2">
         <motion.div 
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
           className="rounded-[20px] overflow-hidden shadow-2xl h-full"
         >
-          {/* Official Corporate Image - ENLARGED */}
+          {/* Official Corporate Image - Responsive Sizing */}
           <img 
             src={corpImage} 
             alt="Lustom Digital Corporate" 
-            className="w-full h-full object-cover min-h-[800px]"
+            className="w-full h-full object-cover min-h-[400px] md:min-h-[600px] lg:min-h-[800px]"
           />
           <div className="absolute inset-0 bg-black/10"></div>
         </motion.div>
